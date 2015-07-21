@@ -14,6 +14,8 @@ var marker = new google.maps.Marker({
   map: map,
   title: 'La Creperie'
   });
+
+console.log(ViewModel.placeList);
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -22,6 +24,15 @@ var Place = function(data){
   this.title = ko.observable(data.title);
   this.url = ko.observable(data.url);
 };
+
+$(document).ready(function(){
+  $('#menu-btn').on('click', function(){
+    $('#place-menu').animate({
+            width: "toggle"
+        });
+    $('ul li').toggle();
+    });
+})
 
 //ViewModel
 
