@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <title>Providence Map</title>
 
-  <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
   <script type="text/javascript"
@@ -12,16 +11,19 @@
   </script>
   <script src="js/jquery.js"></script>
   <script src="js/knockout-3.3.0.js"></script>
+  <script src="js/places.js"></script>
   <script src="js/app.js"></script>
 
 </head>
 <body>
-  <div id="place-menu">
-    <ul data-bind="foreach: placeList">
-      <li data-bind='text: title'></li>
-    </ul>
-  </div>
-  <div id="menu-btn"></div>
+  <div id="nav-bar">
+    <div id="place-menu">
+      <ul data-bind="foreach: placeList">
+        <li data-bind='text: title'></li>
+      </ul>
+    </div>
+    <div id="menu-btn"></div>
+</div>
   <div id="map-canvas"></div>
 </body>
 </html>
