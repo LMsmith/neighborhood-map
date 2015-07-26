@@ -4,9 +4,8 @@ $(document).ready(function(){
   //Toggle the view of the menu open and closed
   $('#menu-btn').on('click', function(){
     $('#place-menu').animate({
-          height: "toggle"
+          visibility: "toggle"
       });
-  $('ul li').toggle();
   });
 
   //Set map options for Google map
@@ -56,6 +55,17 @@ $(document).ready(function(){
         infowindow: new google.maps.InfoWindow(data.placeInfo),
         animation: google.maps.Animation.DROP
       });
+
+      var marker =  this.marker;
+
+      google.maps.event.addListener(marker, 'click', toggleBounce);
+      function toggleBounce() {
+        if (marker.getAnimation() != null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      };
     };
   };
 google.maps.event.addDomListener(window, 'load');
