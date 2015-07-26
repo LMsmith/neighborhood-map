@@ -13,6 +13,7 @@ html, body, #map-canvas {
   width: 25%;
   transform: translateZ(5);
   float: right;
+  display: none;
 }
 
 #menu-btn {
@@ -21,6 +22,7 @@ html, body, #map-canvas {
   width: 2%;
   transform: translateZ(5);
   float: right;
+  display: none;
 }
 
 ul {

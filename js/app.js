@@ -10,97 +10,134 @@ $(document).ready(function(){
   $('ul li').toggle();
   });
 
-  //initialize the Google map
-  function initialize() {
-    var mapOptions = {
-      center: { lat: 41.825283, lng: -71.4126816},
-      zoom: 16
-    };
-
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  };
-
   var places = [
     {
-      position: { lat: 41.8278122, lng: -71.4002354},
+      lat: 41.8278122,
+      lng:  -71.4002354,
       title: 'La Creperie',
-      url: 'http://creperieprov.com/'
+      url: 'http://creperieprov.com/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.825475, lng: -71.413958},
+      lat: 41.825475,
+      lng: -71.413958,
       title: 'Union Station Brewery',
-      url: 'https://www.johnharvards.com/locations/providence-ri/'
+      url: 'https://www.johnharvards.com/locations/providence-ri/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.8211319, lng: -71.4119614},
+      lat: 41.8211319,
+      lng: -71.4119614,
       title: 'Providence Performing Arts Center',
-      url: 'http://www.ppacri.org/'
+      url: 'http://www.ppacri.org/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.826888, lng: -71.407726},
+      lat: 41.826888,
+      lng: -71.407726,
       title: 'RISD Museum',
-      url: 'http://risdmuseum.org/'
+      url: 'http://risdmuseum.org/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.8551243, lng: -71.3616245},
+      lat: 41.8551243,
+      lng: -71.3616245,
       title: 'Hope Street Farmers Market',
-      url: 'http://hopestreetmarket.com/'
+      url: 'http://hopestreetmarket.com/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.8186278, lng: -71.4262943},
+      lat: 41.8186278,
+      lng: -71.4262943,
       title: 'The Avery',
-      url: 'http://averyprovidence.com/'
+      url: 'http://averyprovidence.com/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.8175712, lng: -71.4225758},
+      lat: 41.8175712,
+      lng: -71.4225758,
       title: 'Classic Cafe',
-      url: 'http://classiccaferi.com/'
+      url: 'http://classiccaferi.com/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.8231192, lng: -71.4054752},
+      lat: 41.8231192,
+      lng: -71.4054752,
       title: 'Cable Car Cinema',
-      url: 'http://www.cablecarcinema.com/'
+      url: 'http://www.cablecarcinema.com/',
+      placeInfo: ''
     },
 
     {
-      position: { lat: 41.8274751, lng: -71.4138953},
+      lat: 41.8274751,
+      lng: -71.4138953,
       title: 'WaterFire',
-      url: 'http://waterfire.org/'
-    },
-
-    {
-      position: { lat: 41.7862761, lng: -71.3933733},
-      title: 'Culinary Arts Museum',
-      url: 'http://www.jwu.edu/content.aspx?id=40194'
-    },
+      url: 'http://waterfire.org/',
+      placeInfo: ''
+    }
 
   ];
 
-  //Define the Place class with ko observables
-  var Place = function(data){
-    this.position = ko.observable(data.position);
+  //Define the Model class with ko observables
+  var Model = function(data){
+
+    //Set map options for Google map
+      var mapOptions = {
+        center: { lat: 41.825283, lng: -71.4126816},
+        zoom: 15
+      };
+    //Create new Google map
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    //Set attributes for places
     this.title = ko.observable(data.title);
     this.url = ko.observable(data.url);
+    this.placeInfo = ko.observable(data.placeInfo)
+    this.marker = new google.maps.Marker({
+    position: new google.maps.LatLng(data.lat, data.lng),
+    title: data.title,
+    url: data.url,
+    infowindow: data.placeInfo,
+    animation: google.maps.Animation.DROP
+  });
+  //Add markers to the map
+    this.addMarker =function() {
+    this.marker.setMap(map);
+  };
+
+  google.maps.event.addDomListener(window, 'load');
   };
 
   //---Start VIEWMODEL-------------
   var ViewModel = function(){
     var self = this;
 
-    //Store place items in an observable array
+    //Create observable array this.placeList
     this.placeList = ko.observableArray([]);
 
+    //Add places to placeList
     places.forEach(function(placeItem){
-    self.placeList().push(new Place(placeItem));
+    self.placeList().push(new Model(placeItem));
   });
+
+  var placeLength = this.placeList().length;
+
+  //Iterate through the placeList and add markers to the map
+  this.setMarkers = function(){
+    for (var i = 0; i < placeLength; i++) {
+      self.placeList()[i].addMarker();
+      console.dir(self.placeList()[i]);
+    }
   };
-  google.maps.event.addDomListener(window, 'load', initialize);
+  this.setMarkers();
+
+  };
   ko.applyBindings(new ViewModel());
 });
