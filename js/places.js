@@ -4,7 +4,7 @@ var places = [
     lng:  -71.4002354,
     title: 'La Creperie',
     url: 'http://creperieprov.com/',
-    placeInfo: ''
+    placeInfo: 'test placeInfo'
   },
 
   {

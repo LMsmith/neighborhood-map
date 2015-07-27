@@ -52,11 +52,13 @@ $(document).ready(function(){
         title: data.title,
         map: map,
         url: data.url,
-        infowindow: new google.maps.InfoWindow(data.placeInfo),
         animation: google.maps.Animation.DROP
       });
 
       var marker =  this.marker;
+      var infowindow = new google.maps.InfoWindow({
+      content: data.placeInfo
+  });
 
       google.maps.event.addListener(marker, 'click', toggleBounce);
       function toggleBounce() {
@@ -66,6 +68,10 @@ $(document).ready(function(){
           marker.setAnimation(google.maps.Animation.BOUNCE);
         }
       };
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map,marker);
+      });
     };
   };
 google.maps.event.addDomListener(window, 'load');
