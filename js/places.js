@@ -4,7 +4,7 @@ var places = [
     lng:  -71.4002354,
     title: 'La Creperie',
     url: 'http://creperieprov.com/',
-    placeInfo: 'test placeInfo'
+    placeInfo: 'La Creperie is a place'
   },
 
   {
@@ -12,7 +12,7 @@ var places = [
     lng: -71.413958,
     title: 'Union Station Brewery',
     url: 'https://www.johnharvards.com/locations/providence-ri/',
-    placeInfo: ''
+    placeInfo: 'Union Station Brewery is a place'
   },
 
   {
@@ -20,7 +20,7 @@ var places = [
     lng: -71.4119614,
     title: 'Providence Performing Arts Center',
     url: 'http://www.ppacri.org/',
-    placeInfo: ''
+    placeInfo: 'PPAC is a place'
   },
 
   {
@@ -28,15 +28,7 @@ var places = [
     lng: -71.407726,
     title: 'RISD Museum',
     url: 'http://risdmuseum.org/',
-    placeInfo: ''
-  },
-
-  {
-    lat: 41.8551243,
-    lng: -71.3616245,
-    title: 'Hope Street Farmers Market',
-    url: 'http://hopestreetmarket.com/',
-    placeInfo: ''
+    placeInfo: 'RISD Museum is a place'
   },
 
   {
@@ -44,7 +36,7 @@ var places = [
     lng: -71.4262943,
     title: 'The Avery',
     url: 'http://averyprovidence.com/',
-    placeInfo: ''
+    placeInfo: 'The Avery is a place'
   },
 
   {
@@ -52,7 +44,7 @@ var places = [
     lng: -71.4225758,
     title: 'Classic Cafe',
     url: 'http://classiccaferi.com/',
-    placeInfo: ''
+    placeInfo: 'Classic Cafe is super fun!'
   },
 
   {
@@ -60,7 +52,7 @@ var places = [
     lng: -71.4054752,
     title: 'Cable Car Cinema',
     url: 'http://www.cablecarcinema.com/',
-    placeInfo: ''
+    placeInfo: 'Cable Car Cinema is a place'
   },
 
   {
@@ -68,7 +60,7 @@ var places = [
     lng: -71.4138953,
     title: 'WaterFire',
     url: 'http://waterfire.org/',
-    placeInfo: ''
+    placeInfo: 'WaterFire is a place'
   }
 
 ];

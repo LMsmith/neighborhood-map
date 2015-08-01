@@ -1,9 +1,0 @@
-@media all and (max-width:750px){
-  #place-menu {
-    width: 95%;
-    background-color: yellow;
-  }
-  #menu-btn {
-    width: 5%;
-  }
-}

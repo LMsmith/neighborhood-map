@@ -5,6 +5,7 @@
   <title>Providence Map</title>
 
   <link href="css/style.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
 
   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvUia26fvvT0Q3dRLH3hvsKN1jqsjn_ls">
@@ -21,7 +22,7 @@
   </div>
   <div id="place-menu">
     <ul data-bind="foreach: placeList">
-      <li data-bind='text: title'></li>
+      <li><a href="#" class="place-item" data-bind='text: title, click: $parent.setCurrentPlace'></a></li>
     </ul>
   </div>
 
