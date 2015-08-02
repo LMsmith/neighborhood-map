@@ -95,28 +95,32 @@ $(document).ready(function(){
     allMarkers();
 
     //the currently selected place
-    this.currentPlace = ko.observable(this.placeList()[0]);
+    this.currentPlace = ko.observable(this.placeList()[0].marker);
+
+    //defines the interactions of the current place
+    var interact = function(key) {
+      //removes all animation on former "current place"
+      self.currentPlace().setAnimation(null);
+      //sets clicked place to current place
+      self.currentPlace(key);
+      //toggles animation and opens info window at current place
+      toggleBounce(key);
+      var contentString = key.placeInfo();
+      infowindow.open(map,key);
+      infowindow.setContent(contentString);
+    }
 
     //add event listeners to markers
       for(var i=0; i < placeLength; i++) {
         google.maps.event.addListener(self.placeList()[i].marker, 'click', function(){
-          self.currentPlace(this);
-          toggleBounce(this);
-          var contentString = this.placeInfo();
-          infowindow.open(map,this);
-          infowindow.setContent(contentString);
+          interact(this);
           $(this).closest("#place-item").addClass('bold-title');
         })
       };
 
     //change the current place when list item is clicked
     this.setCurrentPlace = function(clickedPlace){
-      //remove any marker animation from previous currentPlace
-      self.currentPlace().marker.setAnimation(null);
-      self.currentPlace(clickedPlace);
-      //animate currentPlace marker and open its info window
-      toggleBounce(self.currentPlace().marker);
-      openInfoWindow();
+      interact(clickedPlace.marker);
     };
 
     function toggleBounce(marker) {
@@ -129,14 +133,6 @@ $(document).ready(function(){
 
     //create an infowindow
     var infowindow = new google.maps.InfoWindow();
-
-    //open an an info window at the location of the currentPlace
-    function openInfoWindow(){
-      var marker = self.currentPlace().marker;
-      var contentString = self.currentPlace().placeInfo();
-      infowindow.setContent(contentString);
-      infowindow.open(map,marker);
-    }
 
   };
   ko.applyBindings(new ViewModel());
