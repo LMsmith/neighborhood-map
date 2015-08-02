@@ -21,7 +21,6 @@ html, body, #map-canvas {
 
 a {
   color: #637180;
-  font-size: 80 px;
   text-decoration: none;
   font-family: 'Cabin', sans-serif;
   font-size: 110%;
@@ -32,8 +31,24 @@ a:hover {
     font-size: 130%;
 }
 
+.info-img img{
+  max-width: 180px;
+  height: auto;
+}
+
 #place-item {
   font-size: 50px;
+}
+
+#search-box {
+  margin: 5px auto auto 5px;
+  height: 26px;
+  width: 450px;
+  background-color: gray;
+  border: none;
+  font-family: 'Cabin', sans-serif;
+  font-size: 22px;
+  color: white;
 }
 
 #menu-btn {
@@ -45,6 +60,49 @@ a:hover {
 
 ul {
   list-style: none;
+}
+
+@media (max-width: 750px) {
+  #nav-bar {
+    height: 5%;
+    width: 100%;
+  }
+
+#search-box {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  clear: both;
+}
+
+#place-menu {
+    width: 100%;
+    height: 20%;
+    overflow-y: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #map-canvas {
+    height: 75%;
+    clear: both;
+  }
+
+  #menu-btn, .info-img img {
+      display: none;
+  }
+
+  a {
+    font-size: 130%;
+  }
+
+  a:hover {
+      font-size: 140%;
+  }
+
+  h1 {
+    font-size: 1.375em;
+  }
+
 }
 
 
