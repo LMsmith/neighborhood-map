@@ -6,6 +6,7 @@ $(document).ready(function(){
     $('#place-menu').animate({
           visibility: "toggle"
       });
+      ($('#menu-btn').text() === "[+] Show") ? $('#menu-btn').text("[X] Hide") : $('#menu-btn').text("[+] Show");
   });
   //search icon glows yellow on hover
   $('#magnifying').on('mouseover', function(){
@@ -56,8 +57,6 @@ $(document).ready(function(){
 
         //Set attributes for places
         this.title = ko.observable(data.title);
-        this.url = ko.observable(data.url);
-        this.placeInfo = ko.observable(data.placeInfo);
         this.newMarker = function(){
           this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(data.lat, data.lng),
