@@ -13,19 +13,23 @@ $(document).ready(function(){
       center: new google.maps.LatLng(41.825283, -71.4126816),
       zoom: 14
     };
+
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
    var styles = [
       {
         stylers: [
-          { hue: "#0080FF" },
-          { saturation: -30 }
+          { hue: "#314B69" },
+          { saturation: -20 },
+          {lightness: -5}
         ]
       },{
         featureType: "road",
         elementType: "geometry",
         stylers: [
-          { lightness: 30 },
+          { hue: "#DBE852" },
+          { saturation: -50 },
+          { lightness: 40 },
           { visibility: "simplified" }
         ]
       },{
@@ -104,6 +108,7 @@ $(document).ready(function(){
       infowindow.setContent(contentString);
       infowindow.open(map,marker);
     }
+
   };
   ko.applyBindings(new ViewModel());
 });

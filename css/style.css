@@ -7,28 +7,28 @@ html, body, #map-canvas {
 #nav-bar {
   height: 40px;
   width: 100%;
-  background-color: #9FB5CC;
+  background-color: #314B69;
 }
 
 #place-menu {
   width: 20%;
   height: 100%;
-  background-color: pink;
+  background-color: #252e37;
   float: right;
   margin: 0;
   padding: 0;
 }
 
 a {
-  color: #637180;
+  color: #FBFCEA;
   text-decoration: none;
   font-family: 'Cabin', sans-serif;
-  font-size: 110%;
+  font-size: 130%;
 }
 
 a:hover {
-    color: #FF00FF;
-    font-size: 130%;
+    color: #DBE852;
+    font-size: 137%;
 }
 
 .info-img img{
@@ -36,26 +36,34 @@ a:hover {
   height: auto;
 }
 
-#place-item {
-  font-size: 50px;
+h1 {
+  font-size: 20px;
+  font-family: 'Cabin', sans-serif;
+}
+
+#bar {
+  background-color: #343d46;
+  height: 4px;
+  width: 120%;
+  margin-left: -20%;
 }
 
 #search-box {
-  margin: 5px auto auto 5px;
+  margin: 5px auto auto 8px;
   height: 26px;
   width: 450px;
-  background-color: gray;
+  background-color: #7B8C9F;
   border: none;
   font-family: 'Cabin', sans-serif;
   font-size: 22px;
-  color: white;
+  color: #FBFCEA;
 }
 
 #menu-btn {
   height: 40px;
   width: 20%;
   float: right;
-  background-color: #637180;
+  background-color:  #DBE852;
 }
 
 ul {

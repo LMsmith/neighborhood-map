@@ -23,7 +23,10 @@
   </div>
   <div id="place-menu">
     <ul data-bind="foreach: placeList">
-      <li><a href="#" class="place-item" data-bind='text: title, click: $parent.setCurrentPlace'></a></li>
+      <li>
+        <a href="#" class="place-item" data-bind='text: title, click: $parent.setCurrentPlace'></a>
+        <div id="bar"></div>
+      </li>
     </ul>
   </div>
   <div id="map-canvas"></div>
