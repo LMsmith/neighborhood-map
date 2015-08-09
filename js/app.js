@@ -8,14 +8,14 @@ $(document).ready(function(){
       });
       ($('#menu-btn').text() === "[+] Show") ? $('#menu-btn').text("[X] Hide") : $('#menu-btn').text("[+] Show");
   });
-  //search icon glows yellow on hover
-  $('#magnifying').on('mouseover', function(){
-    $('#magnifying').attr("src", "img/search-hover.png");
+  //filter icon glows yellow on hover
+  $('#filter').on('mouseover', function(){
+    $('#filter').attr("src", "img/filter-hover.png");
   });
 
-  //search icon remove glow when mouse leaves
-  $('#magnifying').on('mouseleave', function(){
-    $('#magnifying').attr("src", "img/search.png");
+  //filter icon remove glow when mouse leaves
+  $('#filter').on('mouseleave', function(){
+    $('#filter').attr("src", "img/filter.png");
   });
 
   //Set map options for Google map
@@ -23,9 +23,10 @@ $(document).ready(function(){
       center: new google.maps.LatLng(41.825283, -71.4126816),
       zoom: 15
     };
-
+    //create map
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+    //define map styles
    var styles = [
       {
         stylers: [
@@ -57,10 +58,11 @@ $(document).ready(function(){
 
         //Set attributes for places
         this.title = ko.observable(data.title);
+        this.category = ko.observable(data.category);
         this.newMarker = function(){
           this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(data.lat, data.lng),
-          icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+          icon: data.markerIcon,
           title: data.title,
           placeInfo : ko.observable(data.placeInfo),
           map: map,
@@ -133,6 +135,19 @@ $(document).ready(function(){
     //create an infowindow
     var infowindow = new google.maps.InfoWindow();
 
+    self.query = ko.observable('');
+
+    self.search = ko.computed(function(){
+      return ko.utils.arrayFilter(self.placeList(), function(place){
+        return place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
+      });
+    });
+
+    $('#filter-btn').on('click', function(){
+      //open modal with filter options
+    });
+
   };
+
   ko.applyBindings(new ViewModel());
 });

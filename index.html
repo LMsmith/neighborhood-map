@@ -18,13 +18,13 @@
 </head>
 <body>
   <div id="nav-bar">
-    <input id="search-box" placeholder="Search for places">
-    <button id="go-search"><img id="magnifying" src="img/search.png" alt=""></button>
+    <input id="search-box" placeholder="Search for places..." type="text" type="search" data-bind="textInput: query, valueUpdate: 'keyup'"/>
+    <div id="filter-btn"></div>
     <div id="map-title">PROVIDENCE, RI</div>
     <div id="menu-btn">[X] Hide</div>
   </div>
   <div id="place-menu">
-    <ul data-bind="foreach: placeList">
+    <ul class="" data-bind="foreach: placeList, foreach: search">
       <li>
         <a href="#" class="place-item" data-bind='text: title, click: $parent.setCurrentPlace'></a>
         <div id="bar"></div>

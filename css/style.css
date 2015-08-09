@@ -38,15 +38,16 @@ a:hover {
   color: #DBE852;
 }
 
-#go-search {
-  display: inline;
-  height: 24px;
-  width: 24 px;
-  border: none;
+#filter-btn {
+  float: left;
+  clear: none;
+  margin-left: 5px;
+  margin: 3px auto auto 5px;
+  height: 32px;
+  width: 32px;
+  border-radius: 90px;
+  background-color: pink;
   cursor: pointer;
-  outline: none;
-  background-color: transparent;
-  transform: translate(-16px, -2px);
 }
 
 .info-img img{
@@ -66,10 +67,8 @@ input::-moz-input-placeholder {
   color:#c8c9bb;
 }
 
-#magnifying {
-  transform: translate(-16px, -2px);
-  height: 24px;
-  width: 24px;
+input:focus {
+    outline-color: #DBE852;
 }
 
 #map-title {
@@ -81,7 +80,7 @@ input::-moz-input-placeholder {
 
 #menu-btn {
   height: 40px;
-  width: 20%;
+  width: 25%;
   display: inline;
   float: right;
   background-color:  #DBE852;
@@ -89,6 +88,7 @@ input::-moz-input-placeholder {
   line-height: 40px;
   color: #314B69;
   text-align: center;
+  cursor: pointer;
 }
 
 #nav-bar {
@@ -98,13 +98,14 @@ input::-moz-input-placeholder {
 }
 
 #place-menu {
-  width: 20%;
+  width: 25%;
   height: 100%;
   background-color: #252e37;
   float: right;
   margin: 0;
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
+  z-index: 5;
 }
 
 #search-box {
@@ -119,9 +120,6 @@ input::-moz-input-placeholder {
 }
 
 @media (max-width: 1200px) {
-  #go-search {
-    transform: translate(-16px, 6px);
-  }
 
   #map-title {
     margin-left: 50px;
@@ -133,31 +131,21 @@ input::-moz-input-placeholder {
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 600px) {
   #menu-btn, .info-img img, #map-title {
       display: none;
   }
 
   a {
-    font-size: 130%;
+    font-size: 145%;
   }
 
   a:hover {
-      font-size: 140%;
+      font-size: 155%;
   }
 
   h1 {
     font-size: 1.375em;
-  }
-
-  #go-search {
-    float: right;
-    margin: -28px -32px 0 0;
-  }
-
-  #magnifying {
-    float: right;
-    margin: 0;
   }
 
   #map-canvas {
@@ -166,8 +154,9 @@ input::-moz-input-placeholder {
   }
 
   #nav-bar {
-    height: 5%;
+    height: 40px;
     width: 100%;
+    background-color: #7B8C9F;
   }
 
   #place-menu {
@@ -176,9 +165,10 @@ input::-moz-input-placeholder {
     }
 
   #search-box {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 40px;
     margin: 0;
     clear: both;
+
   }
 }
