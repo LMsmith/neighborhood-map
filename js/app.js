@@ -71,6 +71,37 @@ initMap();
       };
     }
 
+    //get data from Foursquare about places on the map
+    this.getFoursquareData = function() {
+      for(var i=0; i < placeLength; i++){
+        //define latitude-longitude variable for each place
+        var placeLL =  self.placeList()[i].marker.position.G + ',' + self.placeList()[i].marker.position.K;
+        var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
+
+        var apiCallFoursquare= $.get(foursquareUrl);
+
+        apiCallFoursquare.done(function(data) {
+            // success
+            this.name = data.response.venues[0].name;
+            console.log(this);
+            var phone = data.response.venues[0].contact.formattedPhone;
+            var icon = data.response.venues[0].categories[0].icon.prefix + data.response.venues[0].categories[0].icon.suffix;
+            if(data.response.venues[0].hasMenu) {
+              var menu = data.response.venues[0].menu.anchor;
+          };
+            //console.log(self.placeList());
+            //self.placeList().placeInfo(name);
+        });
+        apiCallFoursquare.fail(function(xhr, err) {
+            // failure
+                console.log('Unable to retrieve Foursquare data for this place');
+        });
+        self.placeList()[i].marker.placeInfo('<h1>' + '</h1>');
+      };
+      console.log(apiCallFoursquare.name);
+    }
+
+    this.getFoursquareData();
     //the currently selected place
     this.currentPlace = ko.observable(this.placeList()[0].marker);
 

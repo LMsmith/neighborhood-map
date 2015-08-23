@@ -143,9 +143,19 @@ input:focus {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   #map-title{
     margin-left: 9%;
+  }
+
+  #mobile-attr {
+    float: right;
+    width: 100px;
+    font-size: 14px;
+    line-height: 20px;
+    height: 40px;
+    color:  #00CCFF;
+    margin: 6px 5px auto auto;
   }
 
   #mobile-nav {
@@ -185,7 +195,7 @@ input:focus {
     margin-top: 9px;
   }
 
-  #map-title, #temp, #conditions {
+  #map-title, #temp, #conditions, #attr {
     display: none;
   }
 }
@@ -205,12 +215,21 @@ input:focus {
   }
 
   #map-canvas {
-    height: 75%;
+    height: 100%;
     clear: both;
   }
 
-#mobile-title {
-  font-size: 24px;
-  line-height: 64px;
-}
+  #mobile-nav,#mobile-temp,#mobile-attr,#mobile-title {
+    z-index: 999;
+  }
+
+  #mobile-temp {
+    font-size: 14px;
+  }
+
+  #mobile-title {
+    font-size: 30px;
+    line-height: 50px;
+  }
+
 }

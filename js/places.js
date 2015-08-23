@@ -6,8 +6,7 @@ var places = [
     url: 'http://creperieprov.com/',
     category: 'restaurant',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-    placeInfo:   '<h1>La Creperie</h1>'+
-      '<div class="info-img"><img src="http://rdc.rdcimage.com/partner-images/185099/micrositeimage_micrositeimage_photo3.jpg"></div>'
+    placeInfo: ''
   },
 
   {
@@ -17,8 +16,7 @@ var places = [
     url: 'https://www.johnharvards.com/locations/providence-ri/',
     category: 'restaurant',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-    placeInfo: '<h1>Union Station Brewery</h1>'+
-      '<div class="info-img"><img src="http://media-cdn.tripadvisor.com/media/photo-s/01/19/89/b1/union-station-brewery.jpg"></div>'
+    placeInfo: ''
   },
 
   {
@@ -28,8 +26,7 @@ var places = [
     url: 'http://www.ppacri.org/',
     category: 'entertainment',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
-    placeInfo: '<h1>Providence Performing Arts Center</h1>'+
-      '<div class="info-img"><img src="http://alivecampus.com/wp-content/uploads/2014/03/PPAC.jpg"></div>'
+    placeInfo: ''
   },
 
   {
@@ -39,8 +36,7 @@ var places = [
     url: 'http://risdmuseum.org/',
     category: 'entertainment',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
-    placeInfo: '<h1>Rhode Island School of Design Museum</h1>'+
-      '<div class="info-img"><img src="http://174.121.78.226/~mhcari/wp-content/uploads/2015/03/risda.jpg"></div>'
+    placeInfo: ''
   },
 
   {
@@ -50,8 +46,7 @@ var places = [
     url: 'http://averyprovidence.com/',
     category: 'restaurant',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-    placeInfo: '<h1>The Avery</h1>'+
-      '<div class="info-img"><img src="http://www.narragansettbeer.com/wp-content/uploads/2010/01/Avery-300x200.jpg"></div>'
+    placeInfo: ''
   },
 
   {
@@ -61,8 +56,7 @@ var places = [
     url: 'http://classiccaferi.com/',
     category: 'restaurant',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-    placeInfo:  '<h1>Classic Cafe</h1>'+
-      '<div class="info-img"><img src="https://manfuel.files.wordpress.com/2015/06/man-fuel-food-blog-classic-cafe-providence-ri.jpg?w=1098&h=824"></div>'
+    placeInfo: ''
   },
 
   {
@@ -72,8 +66,7 @@ var places = [
     url: 'http://www.cablecarcinema.com/',
     category: 'entertainment',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
-    placeInfo: '<h1>Cable Car Cinema</h1>'+
-      '<div class="info-img"><img src="http://buckhastings.com/files/gimgs/11_cable-car-wideweb.jpg"></div>'
+    placeInfo: ''
   },
 
   {
@@ -83,8 +76,7 @@ var places = [
     url: 'http://waterfire.org/',
     category: 'entertainment',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
-    placeInfo: '<h1>WaterFire</h1>'+
-      '<div class="info-img"><img src="http://waterfire.org/wp-content/uploads/2012/06/Crowd-at-WaterFire-Photo-b.jpg"></div>'
+    placeInfo: ''
   }
 
 ];
