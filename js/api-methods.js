@@ -2,7 +2,7 @@
 
 var wundergroundUrl = 'http://api.wunderground.com/api/ebf06033e08ca1b6/conditions/q/RI/Providence.json';
 
-var apiCallWunderground= $.get(wundergroundUrl);
+/*var apiCallWunderground= $.get(wundergroundUrl);
 
 apiCallWunderground.done(function(data) {
     // success
@@ -15,4 +15,4 @@ apiCallWunderground.done(function(data) {
 apiCallWunderground.fail(function(xhr, err) {
     // failure
         console.log('Unable to retrieve weather data');
-});
+});*/

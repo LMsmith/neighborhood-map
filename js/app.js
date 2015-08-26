@@ -7,7 +7,7 @@ function initMap() {
   };
   //create map
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-}
+};
 
 $(document).ready(function(){
   "use strict"
@@ -27,14 +27,14 @@ initMap();
     var Model = function(data){
 
         //Set attributes for places
-        this.title = ko.observable(data.title);
-        this.category = ko.observable(data.category);
+        this.title = data.title;
+        this.category = data.category;
         this.newMarker = function(){
           this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(data.lat, data.lng),
           icon: data.markerIcon,
           title: data.title,
-          placeInfo : ko.observable(data.placeInfo),
+          placeInfo : data.placeInfo,
           map: map,
           url: data.url,
           animation: google.maps.Animation.DROP
@@ -71,37 +71,51 @@ initMap();
       };
     }
 
+    var infoPlaces = [];
+
+    for(var i=0; i < placeLength; i++){
+      self.placeList()[i].marker.placeInfo = ko.observable('');
+    };
+
     //get data from Foursquare about places on the map
-    this.getFoursquareData = function() {
+    var getPlaceData = function(){
       for(var i=0; i < placeLength; i++){
         //define latitude-longitude variable for each place
         var placeLL =  self.placeList()[i].marker.position.G + ',' + self.placeList()[i].marker.position.K;
         var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
 
-        var apiCallFoursquare= $.get(foursquareUrl);
+        $.getJSON(foursquareUrl, function(data) {
+          console.log(data.response.venues[0]);
+            var place = {
+              name: data.response.venues[0].name,
+              phone: data.response.venues[0].contact.formattedPhone,
+              id: data.response.venues[0].id,
+              url: data.response.venues[0].url,
+            };
+            infoPlaces.push(place);
+        })
+        function addPlaceInfo(){
+          infoPlaces.sort(function(a, b){
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0;
+        })
 
-        apiCallFoursquare.done(function(data) {
-            // success
-            this.name = data.response.venues[0].name;
-            console.log(this);
-            var phone = data.response.venues[0].contact.formattedPhone;
-            var icon = data.response.venues[0].categories[0].icon.prefix + data.response.venues[0].categories[0].icon.suffix;
-            if(data.response.venues[0].hasMenu) {
-              var menu = data.response.venues[0].menu.anchor;
-          };
-            //console.log(self.placeList());
-            //self.placeList().placeInfo(name);
-        });
-        apiCallFoursquare.fail(function(xhr, err) {
-            // failure
-                console.log('Unable to retrieve Foursquare data for this place');
-        });
-        self.placeList()[i].marker.placeInfo('<h1>' + '</h1>');
+        //add API data from Foursquare to the info windows
+          for(var i=0; i < placeLength; i++) {
+            self.placeList()[i].marker.placeInfo('<h2 id="iw-title">' +infoPlaces[i].name+ '</h2>' +
+            '<p>Phone: ' +infoPlaces[i].phone+ '</p>' +
+            '<a href="' +infoPlaces[i].url+ '" target="_blank">website</a>' +
+            '<a href="https://foursquare.com/v/' +infoPlaces[i].id+ '" target="_blank"><img src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png"></a>'
+          );
+          }
+        };
+        //Prevent info windows from being updated before Foursquare data loads
+        setTimeout(addPlaceInfo,500);
       };
-      console.log(apiCallFoursquare.name);
-    }
+    };
+    getPlaceData();
 
-    this.getFoursquareData();
     //the currently selected place
     this.currentPlace = ko.observable(this.placeList()[0].marker);
 
@@ -150,8 +164,32 @@ initMap();
       });
     });
 
-    $('#filter-btn').on('click', function(){
-      //open modal with filter options
+
+//Info Window manipulation
+//http://en.marnoto.com/2014/09/5-formas-de-personalizar-infowindow.html
+    /*
+     * The google.maps.event.addListener() event waits for
+     * the creation of the infowindow HTML structure 'domready'
+     * and before the opening of the infowindow defined styles
+     * are applied.
+     */
+    google.maps.event.addListener(infowindow, 'domready', function() {
+
+       // Reference to the DIV which receives the contents of the infowindow using jQuery
+       var iwOuter = $('.gm-style-iw');
+
+       /* The DIV we want to change is above the .gm-style-iw DIV.
+        * So, we use jQuery and create a iwBackground variable,
+        * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+        */
+       var iwBackground = iwOuter.prev();
+
+       // Remove the background shadow DIV
+       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+       // Remove the white background DIV
+       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
     });
 
   };
