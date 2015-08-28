@@ -9,6 +9,14 @@ var places = [
   },
 
   {
+    lat: 41.8183487,
+    lng: -71.4348179,
+    title: 'Nick\'s On Broadway',
+    category: 'restaurant',
+    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+  },
+
+  {
     lat: 41.8211319,
     lng: -71.4119614,
     title: 'Providence Performing Arts Center',
@@ -54,6 +62,14 @@ var places = [
     title: 'WaterFire',
     category: 'entertainment',
     markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+  },
+
+  {
+    lat: 41.8185043,
+    lng: -71.41999,
+    title: 'White Electric Coffee',
+    category: 'restaurant',
+    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
   }
 
 ];

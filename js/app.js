@@ -65,10 +65,16 @@ initMap();
     };
     this.allMarkers();
 
-    this.clearMarkers = function(){
+
+    //filter places by category
+    this.filterPlaces = function() {
       for(var i=0; i < placeLength; i++){
-        self.placeList()[i].marker.setMap(null);
-      };
+        if(self.placeList()[i].category === 'restaurant'){
+          self.placeList()[i].marker.visible = true;
+        } else {
+          self.placeList()[i].marker.visible = false;
+        }
+      }
     }
 
     var infoPlaces = [];
@@ -85,7 +91,8 @@ initMap();
         var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
 
         $.getJSON(foursquareUrl, function(data) {
-          console.log(data.response.venues[0]);
+          //console.log(data.response.venues[0]);
+          dataType: "jsonp";
             var place = {
               name: data.response.venues[0].name,
               phone: data.response.venues[0].contact.formattedPhone,
@@ -94,6 +101,9 @@ initMap();
             };
             infoPlaces.push(place);
         })
+
+        //sort places alphabetically
+        //http://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
         function addPlaceInfo(){
           infoPlaces.sort(function(a, b){
             if(a.name < b.name) return -1;
@@ -111,7 +121,7 @@ initMap();
           }
         };
         //Prevent info windows from being updated before Foursquare data loads
-        setTimeout(addPlaceInfo,500);
+        setTimeout(addPlaceInfo,1000);
       };
     };
     getPlaceData();
@@ -160,10 +170,34 @@ initMap();
 
     self.search = ko.computed(function(){
       return ko.utils.arrayFilter(self.placeList(), function(place){
+        //console.log(place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0);
+        if(place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0) {
+          place.marker.setMap(map);
+        } else {
+          place.marker.setMap(null);
+        };
         return place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
       });
     });
 
+    //API data from Weather Underground
+    //Check the conditions before choosing which hotspot to visit!
+
+    //URL for weather data for Providence, RI
+    var wundergroundUrl = 'http://api.wunderground.com/api/ebf06033e08ca1b6/conditions/q/RI/Providence.json';
+    var apiCallWunderground= $.get(wundergroundUrl);
+
+    apiCallWunderground.done(function(data) {
+        // success
+        $('#conditions').append('<p>' +data.current_observation.weather+ '</p>');
+        $('#temp').append('<p>' +data.current_observation.temp_f+ "° F" + '</p>');
+        $('#mobile-temp').append('<p>' +data.current_observation.temp_f+ "° F" + '</p>');
+        //console.log(data);
+    });
+    apiCallWunderground.fail(function(xhr, err) {
+        // failure
+            console.log('Unable to retrieve weather data');
+    });
 
 //Info Window manipulation
 //http://en.marnoto.com/2014/09/5-formas-de-personalizar-infowindow.html

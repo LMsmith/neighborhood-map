@@ -65,6 +65,10 @@ a:hover {
   margin-top: 8px;
 }
 
+.filter-modal {
+  display: none;
+}
+
 .gm-style-iw {
    font-family: Cabin, sans-serif;
    width: 350px !important;
@@ -97,7 +101,7 @@ margin-bottom: -14px;
 .gm-style-iw p, .gm-style-iw a {
   font-size: 18px;
   line-height: 20px;
-  margin: auto auto auto 30px;
+  margin: 10px auto auto 20px;
   color: #5A5A5A;
   float: left;
   text-align: center;
@@ -130,7 +134,7 @@ input:focus {
    background-color: #48b5e9;
    color: white;
    margin: 1px;
-   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+   border-radius: 2px 2px 0 0;
 }
 
 #map-title {
@@ -156,10 +160,6 @@ input:focus {
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
   z-index: 5;
-}
-
-#powered-FS {
-  float: right;
 }
 
 #search-box {
