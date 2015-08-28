@@ -66,4 +66,3 @@ function show_modal(modal_id){
     $('#'+modal_id).fadeIn(500);
 
 }
-

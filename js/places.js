@@ -5,7 +5,7 @@ var places = [
     lng:  -71.4002354,
     title: 'Creperie',
     category: 'restaurant',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    markerIcon: 'img/restaurant.png',
   },
 
   {
@@ -13,7 +13,7 @@ var places = [
     lng: -71.4348179,
     title: 'Nick\'s On Broadway',
     category: 'restaurant',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    markerIcon: 'img/restaurant.png',
   },
 
   {
@@ -21,7 +21,7 @@ var places = [
     lng: -71.4119614,
     title: 'Providence Performing Arts Center',
     category: 'entertainment',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+    markerIcon: 'img/entertainment.png',
   },
 
   {
@@ -29,7 +29,7 @@ var places = [
     lng: -71.4262943,
     title: 'The Avery',
     category: 'restaurant',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    markerIcon: 'img/restaurant.png',
   },
 
   {
@@ -37,7 +37,7 @@ var places = [
     lng: -71.4225758,
     title: 'The Classic Cafe',
     category: 'restaurant',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    markerIcon: 'img/restaurant.png',
   },
 
   {
@@ -45,7 +45,7 @@ var places = [
     lng: -71.407726,
     title: 'The RISD Museum',
     category: 'entertainment',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+    markerIcon: 'img/entertainment.png',
   },
 
   {
@@ -53,7 +53,7 @@ var places = [
     lng: -71.413958,
     title: 'Union Station Brewery',
     category: 'restaurant',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    markerIcon: 'img/restaurant.png',
   },
 
   {
@@ -61,7 +61,7 @@ var places = [
     lng: -71.4138953,
     title: 'WaterFire',
     category: 'entertainment',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+    markerIcon: 'img/entertainment.png',
   },
 
   {
@@ -69,7 +69,7 @@ var places = [
     lng: -71.41999,
     title: 'White Electric Coffee',
     category: 'restaurant',
-    markerIcon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+    markerIcon: 'img/restaurant.png',
   }
 
 ];

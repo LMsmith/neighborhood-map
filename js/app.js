@@ -12,14 +12,14 @@ function initMap() {
 $(document).ready(function(){
   "use strict"
 
-  //filter icon glows yellow on hover
-  $('#filter').on('mouseover', function(){
-    $('#filter').attr("src", "img/filter-hover.png");
+  //browse icon glows yellow on hover
+  $('#searchFS-btn').on('mouseover', function(){
+    $('#searchFS-btn').attr("src", "img/browse-hover.png");
   });
 
-  //filter icon remove glow when mouse leaves
-  $('#filter').on('mouseleave', function(){
-    $('#filter').attr("src", "img/filter.png");
+  //browse icon remove glow when mouse leaves
+  $('#searchFS-btn').on('mouseleave', function(){
+    $('#searchFS-btn').attr("src", "img/browse.png");
   });
 initMap();
 
@@ -64,18 +64,6 @@ initMap();
       };
     };
     this.allMarkers();
-
-
-    //filter places by category
-    this.restaurants = function() {
-      for(var i=0; i < placeLength; i++){
-        if(self.placeList()[i].category === 'restaurant'){
-          self.placeList()[i].marker.visible = true;
-        } else {
-          self.placeList()[i].marker.visible = false;
-        }
-      }
-    };
 
     var infoPlaces = [];
 
@@ -179,57 +167,31 @@ initMap();
       });
     });
 
-    //Filter locations by category
+    //find nearby places and add them to the venueList
+    var venueList = [];
 
-    //Filter the list items by category
-    self.restFilter = ko.observable('restaurant');
-    self.entFilter = ko.observable('entertainment');
+    var nearbyPlaces = function(){
+      var foursquareUrl = 'https://api.foursquare.com/v2/venues/search?ll=41.825283, -71.4126816&query=restaurant&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
 
-    self.filter = ko.computed(function(){
-      return ko.utils.arrayFilter(self.placeList(), function(place){
-        var restList = place.category.indexOf(self.restFilter());
-        var entList = place.category.indexOf(self.entFilter());
-        return restList + entList;
-      });
-    });
+      $.getJSON(foursquareUrl, function(data) {
+        for(var i=0; i <20; i++) {
+          var venues = data.response.venues[i];
+          venueList.push(venues);
+          }
+        });
+    };
+    nearbyPlaces();
 
-    //Show only restaurants
-    $('#restaurants-btn').click(function(){
-      close_modal();
-      for(var i=0; i < placeLength; i++){
-        if(self.placeList()[i].category === 'restaurant'){
-          self.placeList()[i].marker.setMap(map);
-        } else {
-          self.placeList()[i].marker.setMap(null);
-        }
-      };
-      self.restFilter('');
-      self.entFilter('entertainment');
-    });
-
-    //Show only entertainment
-    $('#entertainment-btn').click(function(){
-      close_modal();
-      for(var i=0; i < placeLength; i++){
-        if(self.placeList()[i].category === 'entertainment'){
-          self.placeList()[i].marker.setMap(map);
-        } else {
-          self.placeList()[i].marker.setMap(null);
-        }
-      };
-      self.restFilter('restaurant');
-      self.entFilter('');
-    });
-
-    //Show all locations
-    $('#all-btn').click(function(){
-      close_modal();
-      for(var i=0; i < placeLength; i++){
-          self.placeList()[i].marker.setMap(map);
+    //append nearby place data to the search modal
+    //link places on the list to their foursquare pages
+    var $nearby = $('#search-FS');
+    setTimeout(function(){
+      for(var i=0; i < 20; i++) {
+        var venueName = venueList[i].name;
+        var venueId = venueList[i].id;
+        $nearby.append('<p><a href="https://foursquare.com/v/' +venueId+ '" target="_blank">' +venueName+ '</a></p>');
       }
-      self.restFilter('restaurant');
-      self.entFilter('entertainment');
-    });
+    },1000);
 
     //API data from Weather Underground
     //Check the conditions before choosing which hotspot to visit!
@@ -273,9 +235,7 @@ initMap();
 
        // Remove the white background DIV
        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
     });
-
   };
 
   ko.applyBindings(new ViewModel());
