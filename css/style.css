@@ -33,11 +33,6 @@ a:hover {
     font-size: 130%;
 }
 
-#add-place {
-  background-color: red;
-  margin-top: -10px;
-}
-
 #attr {
   float: right;
   width: 100px;
@@ -55,18 +50,58 @@ a:hover {
   margin-left: -20%;
 }
 
+#close {
+    position:absolute;
+    background-color: yellow;
+    width:24px;
+    height:27px;
+    display:block;
+    text-indent:-9999px;
+    top:-7px;
+    right:-7px;
+}
+
 #conditions {
   float: right;
   color: #EAEAEA;
 }
 
 #filter {
-  background-color: pink;
-  margin-top: 8px;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
 }
 
-.filter-modal {
-  display: none;
+#filter-btn {
+  background-color: pink;
+  outline: none;
+}
+
+.filter-btns {
+  display: inline;
+}
+
+#filter-header, #searchFS-header {
+  background-color: #00CCFF;
+  color: white;
+  text-align: center;
+  margin-top: 0;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  line-height: 30px;
+}
+
+#filter p {
+  font-size: 14px;
+  margin: 0 5px 0 5px;
+}
+
+#restaurants-btn, #entertainment-btn, #all-btn {
+  height: 40px;
+  width: 40px;
+  background-color: green;
+  margin: 5px;
+  outline: none;
 }
 
 .gm-style-iw {
@@ -145,6 +180,33 @@ input:focus {
   margin-left: 18%;
 }
 
+#mask{
+  position:absolute;
+  top:0px;
+  left:0px;
+  height:110%;
+  width:100%;
+  display:none;
+  background-color: black;
+  z-index: 6;
+}
+
+.modal_window{
+    position:absolute; /* important so we can position it on center later */
+    display:none; /* don't show it */
+    /* styling bellow */
+    color:white;
+    z-index: 7;
+}
+
+/* style a specific modal window  */
+#modal_window{
+    padding:50px;
+    border:1px solid gray;
+    background: #246493;
+    color:black;
+}
+
 #nav-bar {
   height: 56px;
   width: 100%;
@@ -173,18 +235,26 @@ input:focus {
   float: left;
 }
 
+#search-FS {
+  background-color: white;
+}
+
+#searchFS-btn {
+  background-color: red;
+  outline: none;
+}
+
 #temp {
   float: right;
   margin: auto 15px auto 15px;
   color: #EAEAEA;
 }
 
-#add-place, #filter {
+#searchFS-btn, #filter-btn {
   height: 60px;
   width: 60px;
-  margin-right: 8px;
+  margin-right: 22%;
   float: right;
-  clear: both;
   cursor: pointer;
 }
 
@@ -195,6 +265,11 @@ input:focus {
 }
 
 @media (max-width: 960px) {
+  #map-canvas {
+    height: 100%;
+    clear: both;
+  }
+
   #map-title{
     margin-left: 9%;
   }
@@ -246,6 +321,11 @@ input:focus {
     margin-top: 9px;
   }
 
+  #searchFS-btn, #filter-btn {
+    float: left;
+    margin: -5px auto 15px 30px;
+  }
+
   #map-title, #temp, #conditions, #attr {
     display: none;
   }
@@ -263,6 +343,10 @@ input:focus {
 
   h1 {
     font-size: 1.375em;
+  }
+
+  #filter-btn, #searchFS-btn {
+    display: none;
   }
 
   #map-canvas {

@@ -15,34 +15,40 @@
   <script src="js/places.js"></script>
   <script async src="js/app.js"></script>
   <script async src="js/modal.js"></script>
-
 </head>
 <body>
   <div id="nav-bar">
-    <input id="search-box" placeholder="Search for places..." type="text" type="search" data-bind="textInput: query, valueUpdate: 'keyup'"/>
-    <div id="filter-btn"></div>
+    <input id="search-box" placeholder="Search for places..." type="search" data-bind="textInput: query, valueUpdate: 'keyup'"/>
     <div id="map-title">PROVIDENCE, RI</div>
     <div id="attr">Powered by Wunderground</div>
     <div id="temp"></div>
     <div id="conditions"></div>
   </div>
   <div id="place-menu">
-    <ul class="" data-bind="foreach: placeList, foreach: search">
+    <ul class="" data-bind="foreach: placeList, foreach: search, foreach: filter">
       <li>
         <a href="#" class="place-item" data-bind='text: title, click: $parent.setCurrentPlace'></a>
         <div id="bar"></div>
       </li>
     </ul>
-    <button id="add-place"></button>
-    <button id="filter" title="filter"></button>
+    <button class='activate_modal' name='filter' id="filter-btn" title="Filter Locations"></button>
+    <button class='activate_modal' name='search-FS' id="searchFS-btn" title="View Nearby Locations"></button>
   </div>
   <div id="mobile-nav">
     <div id="mobile-attr">Powered by Wunderground</div>
     <div id="mobile-title">PROVIDENCE, RI</div>
     <div id="mobile-temp"></div>
   </div>
-  <div id="filter-modal">
-</div>
-  <div id="map-canvas"></div>
+  <div id='mask' class='close_modal'></div>
+  <div id='filter' class='modal_window'>
+    <h1 id="filter-header">Filter Locations</h1>
+      <p><button id="restaurants-btn"></button>Show Restaurants</p>
+      <p><button id="entertainment-btn"></button>Show Entertainment</p>
+      <p><button id="all-btn"></button>Show All</p>
+  </div>
+  <div id='search-FS' class='modal_window'>
+    <h1 id="searchFS-header">Browse Nearby Places</h1>
+  </div>
+    <div id="map-canvas"></div>
 </body>
 </html>

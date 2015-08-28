@@ -67,7 +67,7 @@ initMap();
 
 
     //filter places by category
-    this.filterPlaces = function() {
+    this.restaurants = function() {
       for(var i=0; i < placeLength; i++){
         if(self.placeList()[i].category === 'restaurant'){
           self.placeList()[i].marker.visible = true;
@@ -75,7 +75,7 @@ initMap();
           self.placeList()[i].marker.visible = false;
         }
       }
-    }
+    };
 
     var infoPlaces = [];
 
@@ -91,7 +91,6 @@ initMap();
         var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
 
         $.getJSON(foursquareUrl, function(data) {
-          //console.log(data.response.venues[0]);
           dataType: "jsonp";
             var place = {
               name: data.response.venues[0].name,
@@ -168,9 +167,9 @@ initMap();
 
     self.query = ko.observable('');
 
+    //Live-search filters placeItems by name
     self.search = ko.computed(function(){
       return ko.utils.arrayFilter(self.placeList(), function(place){
-        //console.log(place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0);
         if(place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0) {
           place.marker.setMap(map);
         } else {
@@ -178,6 +177,58 @@ initMap();
         };
         return place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
       });
+    });
+
+    //Filter locations by category
+
+    //Filter the list items by category
+    self.restFilter = ko.observable('restaurant');
+    self.entFilter = ko.observable('entertainment');
+
+    self.filter = ko.computed(function(){
+      return ko.utils.arrayFilter(self.placeList(), function(place){
+        var restList = place.category.indexOf(self.restFilter());
+        var entList = place.category.indexOf(self.entFilter());
+        return restList + entList;
+      });
+    });
+
+    //Show only restaurants
+    $('#restaurants-btn').click(function(){
+      close_modal();
+      for(var i=0; i < placeLength; i++){
+        if(self.placeList()[i].category === 'restaurant'){
+          self.placeList()[i].marker.setMap(map);
+        } else {
+          self.placeList()[i].marker.setMap(null);
+        }
+      };
+      self.restFilter('');
+      self.entFilter('entertainment');
+    });
+
+    //Show only entertainment
+    $('#entertainment-btn').click(function(){
+      close_modal();
+      for(var i=0; i < placeLength; i++){
+        if(self.placeList()[i].category === 'entertainment'){
+          self.placeList()[i].marker.setMap(map);
+        } else {
+          self.placeList()[i].marker.setMap(null);
+        }
+      };
+      self.restFilter('restaurant');
+      self.entFilter('');
+    });
+
+    //Show all locations
+    $('#all-btn').click(function(){
+      close_modal();
+      for(var i=0; i < placeLength; i++){
+          self.placeList()[i].marker.setMap(map);
+      }
+      self.restFilter('restaurant');
+      self.entFilter('entertainment');
     });
 
     //API data from Weather Underground
@@ -192,7 +243,6 @@ initMap();
         $('#conditions').append('<p>' +data.current_observation.weather+ '</p>');
         $('#temp').append('<p>' +data.current_observation.temp_f+ "° F" + '</p>');
         $('#mobile-temp').append('<p>' +data.current_observation.temp_f+ "° F" + '</p>');
-        //console.log(data);
     });
     apiCallWunderground.fail(function(xhr, err) {
         // failure
