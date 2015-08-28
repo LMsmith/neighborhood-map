@@ -2,7 +2,7 @@ var map;
 function initMap() {
   //Set map options for Google map
   var mapOptions = {
-    center: new google.maps.LatLng(41.825283, -71.4126816),
+    center: new google.maps.LatLng(41.825200, -71.4159719),
     zoom: 15
   };
   //create map
@@ -235,7 +235,11 @@ initMap();
 
        // Remove the white background DIV
        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+       var iwCloseBtn = iwOuter.next();
+       iwCloseBtn.css({right: '56px', top: '18px'});
     });
+
   };
 
   ko.applyBindings(new ViewModel());
