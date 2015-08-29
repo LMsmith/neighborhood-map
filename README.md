@@ -12,7 +12,7 @@ Browse for other nearby locations using the "Browse Nearby!" button
 
 To filter hotspots, begin typing in the search bar
 
-
+#Full JSDoc file in readme folder
 Source:
 app.js, line 13
 Home
