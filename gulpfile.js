@@ -10,7 +10,7 @@ var htmlmin = require('gulp-htmlmin');
 gulp.task('scripts', function(){
 	gulp.src('**/js/*.js')
 	.pipe(uglify())
-	.pipe(gulp.dest('/dist/js'))
+	.pipe(gulp.dest('dist/js'))
 });
 
 //minify task
@@ -18,7 +18,7 @@ gulp.task('scripts', function(){
 gulp.task('minify', function() {
   return gulp.src('src/*.html')
     .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('/dist'))
+    .pipe(gulp.dest('dist'))
 });
 
 //styles task
@@ -35,7 +35,7 @@ gulp.task('styles', function(){
 gulp.task('imagemin', function(){
 	gulp.src('**/images/*')
 	.pipe(imagemin())
-	.pipe(gulp.dest('/dist/img'))
+	.pipe(gulp.dest('dist/img'))
 });
 
 //watch task

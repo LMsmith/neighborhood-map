@@ -4,6 +4,8 @@
 *Location data from Foursquare
 *Weather data from Weather Underground
 *
+*To run the program, 
+*
 *Select a location to view contact information and link to its website
 *Browse for other nearby locations using the "Browse Nearby!" button
 *To filter hotspots, begin typing in the search bar
@@ -13,16 +15,17 @@
 var map;
 function initMap() {
   /**mapOptions - Set map options for Google map */
+  "use strict";
   var mapOptions = {
     center: new google.maps.LatLng(41.825200, -71.4159719),
     zoom: 15
   };
   /**create map using defined mapOptions*/
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-};
+}
 
 $(document).ready(function(){
-  "use strict"
+  "use strict";
 
   /**Browse icon highlight on mouseover */
   $('#searchFS-btn').on('mouseover', function(){
@@ -59,8 +62,8 @@ initMap();
 
       var self = this;
 
-      /** this.placeList -  observable array of places */
-      this.placeList = ko.observableArray([]);
+      /** self.placeList -  observable array of places */
+      self.placeList = ko.observableArray([]);
 
       /**Add places to placeList */
       places.forEach(function(placeItem){
@@ -71,19 +74,19 @@ initMap();
     var placeLength = self.placeList().length;
 
     /**Create markers for all places */
-    this.allMarkers = function() {
+    self.allMarkers = function() {
       for(var i=0; i < placeLength; i++){
         self.placeList()[i].newMarker();
-      };
+      }
     };
-    this.allMarkers();
+    self.allMarkers();
 
     /**infoPlaces holds  the data from Foursquare */
     var infoPlaces = [];
 
     for(var i=0; i < placeLength; i++){
       self.placeList()[i].marker.placeInfo = ko.observable('');
-    };
+    }
 
     /**Get data from Foursquare about places on the map */
     var getPlaceData = function(){
@@ -93,8 +96,8 @@ initMap();
         var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
 
         $.getJSON(foursquareUrl, function(data) {
-          dataType: "jsonp";
             var place = {
+              dataType: "jsonp",
               name: data.response.venues[0].name,
               phone: data.response.venues[0].contact.formattedPhone,
               id: data.response.venues[0].id,
@@ -102,6 +105,7 @@ initMap();
             };
             infoPlaces.push(place);
         })
+        .fail(function() { alert('Failed to load Foursquare data!'); });
 
         /** Sort places alphabetically
         *http://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
@@ -111,7 +115,7 @@ initMap();
             if(a.name < b.name) return -1;
             if(a.name > b.name) return 1;
             return 0;
-        })
+        });
 
         /**Add API data from Foursquare to the info windows */
           for(var i=0; i < placeLength; i++) {
@@ -119,17 +123,17 @@ initMap();
             '<p>Phone: ' +infoPlaces[i].phone+ '</p>' +
             '<a href="' +infoPlaces[i].url+ '" target="_blank">website</a>' +
             '<a href="https://foursquare.com/v/' +infoPlaces[i].id+ '" target="_blank"><img src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png"></a>'
-          );
+            );
           }
-        };
+        }
         /** setTimeout - Prevent info windows from being updated before Foursquare data loads */
         setTimeout(addPlaceInfo,1000);
-      };
+      }
     };
     getPlaceData();
 
-    /**this.CurrentPlace - Define the currently selected place */
-    this.currentPlace = ko.observable(this.placeList()[0].marker);
+    /**self.CurrentPlace - Define the currently selected place */
+    self.currentPlace = ko.observable(this.placeList()[0].marker);
 
     /** interact - Defines the interactions of the current place */
     var interact = function(key) {
@@ -143,27 +147,27 @@ initMap();
       var contentString = key.placeInfo();
       infowindow.open(map,key);
       infowindow.setContent(contentString);
-    }
+    };
 
     /**Add event listeners to markers */
-      for(var i=0; i < placeLength; i++) {
-        google.maps.event.addListener(self.placeList()[i].marker, 'click', function(){
+      for(var j=0; j < placeLength; j++) {
+        google.maps.event.addListener(self.placeList()[j].marker, 'click', function(){
           interact(this);
-        })
-      };
+        });
+      }
 
     /**Change the current place when list item is clicked */
-    this.setCurrentPlace = function(clickedPlace){
+    self.setCurrentPlace = function(clickedPlace){
       interact(clickedPlace.marker);
     };
 
     function toggleBounce(marker) {
-      if (marker.getAnimation() != null) {
+      if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
       } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
       }
-    };
+    }
 
     /**Create an infowindow */
     var infowindow = new google.maps.InfoWindow();
@@ -178,7 +182,7 @@ initMap();
           place.marker.setMap(map);
         } else {
           place.marker.setMap(null);
-        };
+        }
         return place.marker.title.toLowerCase().indexOf(self.query().toLowerCase()) >= 0;
       });
     });
@@ -196,7 +200,8 @@ initMap();
           var venues = data.response.venues[i];
           venueList.push(venues);
           }
-        });
+        })
+        .fail(function() { alert('Failed to load Foursquare data! '); });
     };
     nearbyPlaces();
 
@@ -257,7 +262,7 @@ initMap();
        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
 
        var iwCloseBtn = iwOuter.next();
-       iwCloseBtn.css({right: '56px', top: '18px'});
+       iwCloseBtn.css({right: '38px', top: '12px'});
     });
   };
   /**Apply KO bindings */
