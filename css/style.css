@@ -267,7 +267,7 @@ input:focus {
 	}
 }
 
-@media (max-device-width: 1024px) and (min-device-width: 601px){
+@media (max-width: 1024px) {
 	#map-canvas {
 		height: 100%;
 		clear: both;
@@ -293,10 +293,8 @@ input:focus {
 
 	#mobile-title {
 		display: inline;
-		margin: auto;
 		color: #00ccff;
 		font-size: 30px;
-		margin-left: -100px;
 	}
 
 	#mobile-temp {
@@ -348,7 +346,7 @@ input:focus {
 	}
 }
 
-@media (max-device-width: 600px) {
+@media (max-width: 600px) {
 
 	a {
 		font-size: 145%;
@@ -414,5 +412,21 @@ input:focus {
 	#place-menu {
 		width: 100%;
 		height: 140px;
+	}
+
+	#map-title {
+		display: none;
+	}
+
+	#temp {
+		display: none;
+	}
+
+	#conditions {
+		display: none;
+	}
+
+	#attr {
+		display: none;
 	}
 }

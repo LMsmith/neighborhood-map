@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
 *Neighborhood Map Project - Providence, RI
 *Created using the Google Maps API
 *Location data from Foursquare
@@ -79,7 +107,7 @@ initMap();
 
     /**Create markers for all places */
     self.allMarkers = function() {
-      for(var i=0; i < placeLength; i++){
+      for(var i=0; i &lt; placeLength; i++){
         self.placeList()[i].newMarker();
       }
     };
@@ -88,16 +116,16 @@ initMap();
     /**infoPlaces holds  the data from Foursquare */
     var infoPlaces = [];
 
-    for(var i=0; i < placeLength; i++){
+    for(var i=0; i &lt; placeLength; i++){
       self.placeList()[i].marker.placeInfo = ko.observable('');
     }
 
     /**Get data from Foursquare about places on the map */
     var getPlaceData = function(){
-      for(var i=0; i < placeLength; i++){
+      for(var i=0; i &lt; placeLength; i++){
         /** placeLL - Define latitude-longitude variable for each place */
         var placeLL =  self.placeList()[i].marker.position.G + ',' + self.placeList()[i].marker.position.K;
-        var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
+        var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&amp;client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&amp;client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&amp;v=20150819';
 
         $.getJSON(foursquareUrl, function(data) {
             var place = {
@@ -116,17 +144,17 @@ initMap();
         */
         function addPlaceInfo(){
           infoPlaces.sort(function(a, b){
-            if(a.name < b.name) return -1;
+            if(a.name &lt; b.name) return -1;
             if(a.name > b.name) return 1;
             return 0;
         });
 
         /**Add API data from Foursquare to the info windows */
-          for(var i=0; i < placeLength; i++) {
-            self.placeList()[i].marker.placeInfo('<h2 id="iw-title">' +infoPlaces[i].name+ '</h2>' +
-            '<p>Phone: ' +infoPlaces[i].phone+ '</p>' +
-            '<a href="' +infoPlaces[i].url+ '" target="_blank">website</a>' +
-            '<a href="https://foursquare.com/v/' +infoPlaces[i].id+ '" target="_blank"><img src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png"></a>'
+          for(var i=0; i &lt; placeLength; i++) {
+            self.placeList()[i].marker.placeInfo('&lt;h2 id="iw-title">' +infoPlaces[i].name+ '&lt;/h2>' +
+            '&lt;p>Phone: ' +infoPlaces[i].phone+ '&lt;/p>' +
+            '&lt;a href="' +infoPlaces[i].url+ '" target="_blank">website&lt;/a>' +
+            '&lt;a href="https://foursquare.com/v/' +infoPlaces[i].id+ '" target="_blank">&lt;img src="https://ss0.4sqi.net/img/poweredByFoursquare/poweredby-one-color-cdf070cc7ae72b3f482cf2d075a74c8c.png">&lt;/a>'
             );
           }
         }
@@ -154,7 +182,7 @@ initMap();
     };
 
     /**Add event listeners to markers */
-      for(var j=0; j < placeLength; j++) {
+      for(var j=0; j &lt; placeLength; j++) {
         google.maps.event.addListener(self.placeList()[j].marker, 'click', function(){
           interact(this);
         });
@@ -197,10 +225,10 @@ initMap();
     var venueList = [];
 
     var nearbyPlaces = function(){
-      var foursquareUrl = 'https://api.foursquare.com/v2/venues/search?ll=41.825283, -71.4126816&query=restaurant&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
+      var foursquareUrl = 'https://api.foursquare.com/v2/venues/search?ll=41.825283, -71.4126816&amp;query=restaurant&amp;client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&amp;client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&amp;v=20150819';
 
       $.getJSON(foursquareUrl, function(data) {
-        for(var i=0; i <20; i++) {
+        for(var i=0; i &lt;20; i++) {
           var venues = data.response.venues[i];
           venueList.push(venues);
           }
@@ -214,10 +242,10 @@ initMap();
     */
     var $nearby = $('#search-FS');
     setTimeout(function(){
-      for(var i=0; i < 20; i++) {
+      for(var i=0; i &lt; 20; i++) {
         var venueName = venueList[i].name;
         var venueId = venueList[i].id;
-        $nearby.append('<p><a href="https://foursquare.com/v/' +venueId+ '" target="_blank">' +venueName+ '</a></p>');
+        $nearby.append('&lt;p>&lt;a href="https://foursquare.com/v/' +venueId+ '" target="_blank">' +venueName+ '&lt;/a>&lt;/p>');
       }
     },1000);
 
@@ -231,9 +259,9 @@ initMap();
 
     apiCallWunderground.done(function(data) {
         // success
-        $('#conditions').append('<p>' +data.current_observation.weather+ '</p>');
-        $('#temp').append('<p>' +data.current_observation.temp_f+ "° F" + '</p>');
-        $('#mobile-temp').append('<p>' +data.current_observation.temp_f+ "° F" + '</p>');
+        $('#conditions').append('&lt;p>' +data.current_observation.weather+ '&lt;/p>');
+        $('#temp').append('&lt;p>' +data.current_observation.temp_f+ "° F" + '&lt;/p>');
+        $('#mobile-temp').append('&lt;p>' +data.current_observation.temp_f+ "° F" + '&lt;/p>');
     });
     apiCallWunderground.fail(function(xhr, err) {
         // failure
@@ -271,4 +299,26 @@ initMap();
   };
   /**Apply KO bindings */
   ko.applyBindings(new ViewModel());
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#map">map</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Aug 30 2015 19:14:08 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
