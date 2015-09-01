@@ -388,8 +388,12 @@ input:focus {
 		display: inline;
 		float: left;
 		font-size: 40px;
-		color: #eaeaea;
+		font-weight: bold;
+		color: #00ccff;
+		margin: auto 10px auto 10px;
 		background-color: #333333;
+		outline: none;
+		border: none;
 	}
 
 	#place-menu {
@@ -421,6 +425,10 @@ input:focus {
 	  transform: translate(-100vw, 0px);
 	}
 
+	#search-box {
+		width: 90%;
+		margin: 2% 5% 2% 5%;
+	}
 
 	#conditions {
 		float: left;

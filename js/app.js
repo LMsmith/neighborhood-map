@@ -53,6 +53,10 @@ $("#nav-btn").click(function(){
     ($("#nav-btn").text() === "+") ? $("#nav-btn").text("X") : $("#nav-btn").text("+");
 });
 
+Mousetrap.bind('shift+s', function(e) {
+  document.getElementById("search-box").focus();
+});
+
     /**-------------------------------------Start MODEL--------------------------------------------------*/
     var Model = function(data){
 
