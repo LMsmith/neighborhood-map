@@ -129,7 +129,7 @@ input:focus {
 	outline-color: #00ccff;
 }
 
-#iw-container  .iw-title {
+#iw-container .iw-title {
 	font-size: 22px;
 	font-weight: 400;
 	padding: 10px;
@@ -155,8 +155,8 @@ input:focus {
 
 #mask {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	height: 110%;
 	width: 100%;
 	display: none;
@@ -362,11 +362,11 @@ input:focus {
 	#map-canvas {
 		height: 91vh;
 		width: 100vw;
-		-webkit-transform: translate(0px, 0px);
-		-moz-transform: translate(0px, 0px);
-		-o-transform: translate(0px, 0px);
-		-ms-transform: translate(0px, 0px);
-		transform: translate(0px, 0px);
+		-webkit-transform: translate(0, 0);
+		-moz-transform: translate(0, 0);
+		-o-transform: translate(0, 0);
+		-ms-transform: translate(0, 0);
+		transform: translate(0, 0);
 		-webkit-transition: 0.15s ease;
 		-moz-transition: 0.15s ease;
 		-o-transition: 0.15s ease;
@@ -376,11 +376,11 @@ input:focus {
 	}
 
 	#map-canvas.active {
-		-webkit-transform: translate(-100vw, 0px);
-		-moz-transform: translate(-100vw, 0px);
-		-o-transform: translate(-100vw, 0px);
-		-ms-transform: translate(-100vw, 0px);
-		transform: translate(-100vw, 0px);
+		-webkit-transform: translate(-100vw, 0);
+		-moz-transform: translate(-100vw, 0);
+		-o-transform: translate(-100vw, 0);
+		-ms-transform: translate(-100vw, 0);
+		transform: translate(-100vw, 0);
 		top: -100%;
 	}
 
@@ -406,11 +406,11 @@ input:focus {
 		width: 100vw;
 		right: -100vw;
 		height: 100%;
-		-webkit-transform: translate(0px, 0px);
-		-moz-transform: translate(0px, 0px);
-		-o-transform: translate(0px, 0px);
-		-ms-transform: translate(0px, 0px);
-		transform: translate(0px, 0px);
+		-webkit-transform: translate(0, 0);
+		-moz-transform: translate(0, 0);
+		-o-transform: translate(0, 0);
+		-ms-transform: translate(0, 0);
+		transform: translate(0, 0);
 		-webkit-transition: 0.15s ease;
 		-moz-transition: 0.15s ease;
 		-o-transition: 0.15s ease;
@@ -418,11 +418,11 @@ input:focus {
 	}
 
 	#place-menu.active {
-	  -webkit-transform: translate(-100vw, 0px);
-	  -moz-transform: translate(-100vw, 0px);
-	  -o-transform: translate(-100vw, 0px);
-	  -ms-transform: translate(-100vw, 0px);
-	  transform: translate(-100vw, 0px);
+	  -webkit-transform: translate(-100vw, 0);
+	  -moz-transform: translate(-100vw, 0);
+	  -o-transform: translate(-100vw, 0);
+	  -ms-transform: translate(-100vw, 0);
+	  transform: translate(-100vw, 0);
 	}
 
 	#search-box {
