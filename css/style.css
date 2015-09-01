@@ -268,10 +268,10 @@ input:focus {
 }
 
 @media (max-width: 1024px) {
+
 	#map-canvas {
-		height: 100vh;
+		height: 61.5vh;
 		width: 100vw;
-		clear: both;
 	}
 
 	#mobile-attr {
@@ -389,6 +389,10 @@ input:focus {
 		text-transform: full-width;
 	}
 
+	#map-canvas {
+		height: 62.5vh;
+	}
+
 	#searchFS-btn {
 		display: none;
 	}
@@ -396,6 +400,10 @@ input:focus {
 	#mobile-attr {
 		font-size: 12px;
 		z-index: 999;
+	}
+
+	#mobile-conditions {
+		display: none;
 	}
 
 	#mobile-nav {
