@@ -24,21 +24,20 @@
     <div id="temp"></div>
     <div id="conditions"></div>
   </div>
-    <div id="place-menu">
-      <input id="search-box" placeholder="Search for places..." type="search" data-bind="textInput: query, valueUpdate: "keyup""/>
-      <ul data-bind="foreach: placeList, foreach: search">
-        <li>
-          <a href="#" class="place-item" data-bind="text: title, click: $parent.setCurrentPlace"></a>
-          <div id="bar"></div>
-        </li>
-      </ul>
-      <img src="img/browse.png" class="activate_modal" name="search-FS" id="searchFS-btn"/>
-    </div>
-    <div id="mask" class="close_modal"></div>
-    <div id="search-FS" class="modal_window">
-      <h1 id="searchFS-header">Browse Nearby Places</h1>
-    </div>
-    <div id="map-canvas"></div>
+  <div id="place-menu">
+    <input id="search-box" placeholder="Search for places..." type="search" data-bind="textInput: query, valueUpdate: 'keyup'"/>
+    <ul data-bind="foreach: placeList, foreach: search">
+      <li>
+        <a href="#" class="place-item" data-bind="text: title, click: $parent.setCurrentPlace"></a>
+        <div id="bar"></div>
+      </li>
+    </ul>
+    <img src="img/browse.png" alt="Browse nearby places" class="activate_modal" id="searchFS-btn"/>
   </div>
+  <div id="mask" class="close_modal"></div>
+  <div id="search-FS" class="modal_window">
+    <h1 id="searchFS-header">Browse Nearby Places</h1>
+  </div>
+  <div id="map-canvas"></div>
 </body>
 </html>

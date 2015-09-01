@@ -13,6 +13,7 @@
 *Select a location to view contact information and link to its website
 *Browse for other nearby locations using the "Browse Nearby!" button
 *Filter hotspots by typing in the search bar
+*Shift+s is a shortkey to focus on the search bar
 *
 */
 
