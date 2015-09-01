@@ -1,18 +1,29 @@
-# neighborhood-map
+#Neighborhood Map Project - Providence, RI
 
-Neighborhood Map Project - Providence, RI 
+#To run the program:
+clone the Github repository to your machine,
 
-Created using the Google Maps 
-API Location data from Foursquare 
-Weather data from Weather Underground 
+open the dist folder
 
-Select a location to view contact information and link to its website 
+and run index.html in the browser of your choice
 
-Browse for other nearby locations using the "Browse Nearby!" button 
+#This app allows you to:
+*Select a location to view contact information and link to its website
 
-To filter hotspots, begin typing in the search bar
+*Browse for other nearby locations using the "Browse Nearby!" button
 
-#Full JSDoc file in readme folder
+*Filter hotspots by typing in the search bar
+
+*Shift+s is a shortkey to focus on the search bar
+
+--------------------------------
+
+###Created using the Google Maps API
+###Location data from Foursquare
+###Weather data from Weather Underground
+
+
+###Full JSDoc file in readme folder
 Source:
 app.js, line 13
 Home
