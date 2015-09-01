@@ -9,6 +9,7 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	overflow: hidden;
 }
 
 h1 {
@@ -34,6 +35,10 @@ a {
 a:hover {
 	color: #00b8e6;
 	font-size: 130%;
+}
+
+#wrapper {
+	display: flex;
 }
 
 #attr {
@@ -179,6 +184,10 @@ input:focus {
 	background-color: #333333;
 }
 
+#nav-btn {
+	display: none;
+}
+
 #place-menu {
 	width: 27%;
 	height: 100%;
@@ -191,9 +200,9 @@ input:focus {
 }
 
 #search-box {
-	margin: 14px auto auto 6px;
+	margin: 14px 2% auto 2%;
 	height: 26px;
-	width: 26%;
+	width: 96%;
 	background-color: #eaeaea;
 	border: none;
 	font-size: 22px;
@@ -269,67 +278,36 @@ input:focus {
 
 @media (max-width: 1024px) {
 
-	#map-canvas {
-		height: 61.5vh;
-		width: 100vw;
+	li {
+		font-size: 1.25em;
 	}
 
-	#mobile-attr {
-		float: right;
-		width: 100px;
-		font-size: 14px;
-		line-height: 20px;
-		height: 40px;
-		color: #00ccff;
-		margin: 6px 5px auto auto;
+	p {
+		font-size: 2.2em;
 	}
 
-	#mobile-conditions {
-		float: right;
-		color: #eaeaea;
-		margin: auto 10px auto 10px;
+	#conditions {
+		margin-top: -1%;
 	}
 
-	#mobile-nav {
-		background-color: #333333;
-		width: 100%;
-		height: 60px;
-		position: fixed;
-		bottom: 0;
-		margin-bottom: -1%;
-		z-index: 10;
-	}
 
-	#mobile-title {
+	#container {
 		display: inline;
-		color: #00ccff;
-		font-size: 30px;
 	}
 
-	#mobile-temp {
-		float: right;
-		margin: auto;
-		color: #eaeaea;
-		font-size: 14px;
-		margin: auto 10px auto 10px;
-		z-index: 999;
+	#map-canvas {
+		height: 69vw;
+		width: 73vw;
+	}
+
+	#map-title {
+		margin-left: auto;
 	}
 
 	#nav-bar {
 		width: 100%;
 		z-index: 10;
 		height: 60px;
-	}
-
-	#place-menu {
-		width: 100%;
-		height: 24%;
-	}
-
-	#search-box {
-		width: 96%;
-		height: 40px;
-		margin: 9px auto auto 2%;
 	}
 
 	#search-FS {
@@ -341,24 +319,12 @@ input:focus {
 		margin: -5px auto 15px 30px;
 	}
 
-	#map-title {
-		display: none;
-	}
-
 	#temp {
-		display: none;
-	}
-
-	#conditions {
-		display: none;
-	}
-
-	#attr {
-		display: none;
+		margin-top: -1%;
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
 
 	a {
 		font-size: 145%;
@@ -366,6 +332,10 @@ input:focus {
 
 	a:hover {
 		font-size: 155%;
+	}
+
+	p {
+		font-size: 1.7em;
 	}
 
 	h1 {
@@ -390,57 +360,81 @@ input:focus {
 	}
 
 	#map-canvas {
-		height: 62.5vh;
+		height: 91vh;
+		width: 100vw;
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+		-o-transform: translate(0px, 0px);
+		-ms-transform: translate(0px, 0px);
+		transform: translate(0px, 0px);
+		-webkit-transition: 0.15s ease;
+		-moz-transition: 0.15s ease;
+		-o-transition: 0.15s ease;
+		transition: 0.15s ease;
+		z-index: 0;
+		position: static;
 	}
 
-	#searchFS-btn {
-		display: none;
+	#map-canvas.active {
+		-webkit-transform: translate(-100vw, 0px);
+		-moz-transform: translate(-100vw, 0px);
+		-o-transform: translate(-100vw, 0px);
+		-ms-transform: translate(-100vw, 0px);
+		transform: translate(-100vw, 0px);
+		top: -100%;
 	}
 
-	#mobile-attr {
-		font-size: 12px;
-		z-index: 999;
-	}
-
-	#mobile-conditions {
-		display: none;
-	}
-
-	#mobile-nav {
-		z-index: 999;
-		margin-bottom: -3%;
-	}
-
-	#mobile-temp {
-		font-size: 14px;
-		margin-top: -5px;
-		z-index: 999;
-	}
-
-	#mobile-title {
-		font-size: 24px;
-		line-height: 50px;
-		z-index: 999;
+	#nav-btn {
+		display: inline;
+		float: left;
+		font-size: 40px;
+		color: #eaeaea;
+		background-color: #333333;
 	}
 
 	#place-menu {
-		width: 100%;
-		height: 140px;
+		background-color: #5a5a5a;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		margin-right: 0;
+		top: 0;
+		bottom: 0;
+		width: 100vw;
+		right: -100vw;
+		height: 100%;
+		-webkit-transform: translate(0px, 0px);
+		-moz-transform: translate(0px, 0px);
+		-o-transform: translate(0px, 0px);
+		-ms-transform: translate(0px, 0px);
+		transform: translate(0px, 0px);
+		-webkit-transition: 0.15s ease;
+		-moz-transition: 0.15s ease;
+		-o-transition: 0.15s ease;
+		transition: 0.15s ease;
+	}
+
+	#place-menu.active {
+	  -webkit-transform: translate(-100vw, 0px);
+	  -moz-transform: translate(-100vw, 0px);
+	  -o-transform: translate(-100vw, 0px);
+	  -ms-transform: translate(-100vw, 0px);
+	  transform: translate(-100vw, 0px);
+	}
+
+
+	#conditions {
+		float: left;
+	}
+
+	#temp {
+		float: left;
 	}
 
 	#map-title {
 		display: none;
 	}
 
-	#temp {
-		display: none;
-	}
-
-	#conditions {
-		display: none;
-	}
-
-	#attr {
+	#searchFS-btn {
 		display: none;
 	}
 }

@@ -31,16 +31,27 @@ function initMap() {
 $(document).ready(function(){
   "use strict";
 
-  /**Browse icon highlight on mouseover */
-  $('#searchFS-btn').on('mouseover', function(){
-    $('#searchFS-btn').attr("src", "img/browse-hover.png");
-  });
-
-  /**Remove highlight on mouseleave */
-  $('#searchFS-btn').on('mouseleave', function(){
-    $('#searchFS-btn').attr("src", "img/browse.png");
-  });
 initMap();
+
+/**Browse icon highlight on mouseover */
+$('#searchFS-btn').on('mouseover', function(){
+  $('#searchFS-btn').attr("src", "img/browse-hover.png");
+});
+
+/**Remove highlight on mouseleave */
+$('#searchFS-btn').on('mouseleave', function(){
+  $('#searchFS-btn').attr("src", "img/browse.png");
+});
+
+//Off-canvas style slide menu based on tutorial from
+//http://blog.tomri.ch/super-simple-off-canvas-menu-navigation/
+
+$("#nav-btn").click(function(){
+    $("#place-menu").toggleClass("active");
+    $("#map-canvas").toggleClass("active");
+    //http://stackoverflow.com/questions/22263266/jquery-toggle-text-to-change-on-click
+    ($("#nav-btn").text() === "+") ? $("#nav-btn").text("X") : $("#nav-btn").text("+");
+});
 
     /**-------------------------------------Start MODEL--------------------------------------------------*/
     var Model = function(data){
