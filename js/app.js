@@ -66,7 +66,7 @@ Mousetrap.bind('shift+s', function(e) {
         this.category = data.category;
         this.newMarker = function(){
           this.marker = new google.maps.Marker({
-          position: new google.maps.LatLng(data.lat, data.lng),
+          position: new google.maps.LatLng(data.lat,data.lng),
           icon: data.markerIcon,
           title: data.title,
           placeInfo : data.placeInfo,
@@ -112,12 +112,13 @@ Mousetrap.bind('shift+s', function(e) {
     var getPlaceData = function(){
       for(var i=0; i < placeLength; i++){
         /** placeLL - Define latitude-longitude variable for each place */
-        var placeLL =  self.placeList()[i].marker.position.G + ',' + self.placeList()[i].marker.position.K;
+        var placeLL =  self.placeList()[i].marker.position.toString().replace(/\s+/g, '').replace('(', '').replace(')', '');
+        console.log(placeLL);
         var foursquareUrl='https://api.foursquare.com/v2/venues/search?ll=' +placeLL+ '&client_id=WGP24ZPE3M4UTYO3STK2KU0XTLA4V4C5R3GUHQL5DJRFCKIA&client_secret=A1SD3AFP1YDTU1ATMYV4BFVX1V421CFBQQXB1Y2XZXZ2LVPW&v=20150819';
 
         $.getJSON(foursquareUrl, function(data) {
+            dataType: "jsonp";
             var place = {
-              dataType: "jsonp",
               name: data.response.venues[0].name,
               phone: data.response.venues[0].contact.formattedPhone,
               id: data.response.venues[0].id,
@@ -137,7 +138,8 @@ Mousetrap.bind('shift+s', function(e) {
             return 0;
         });
 
-        /**Add API data from Foursquare to the info windows */
+        console.log(infoPlaces);
+        //Add API data from Foursquare to the info windows
           for(var i=0; i < placeLength; i++) {
             self.placeList()[i].marker.placeInfo('<h2 id="iw-title">' +infoPlaces[i].name+ '</h2>' +
             '<p>Phone: ' +infoPlaces[i].phone+ '</p>' +
@@ -146,7 +148,7 @@ Mousetrap.bind('shift+s', function(e) {
             );
           }
         }
-        /** setTimeout - Prevent info windows from being updated before Foursquare data loads */
+        //setTimeout - Prevent info windows from being updated before Foursquare data loads
         setTimeout(addPlaceInfo,1000);
       }
     };
