@@ -63,6 +63,6 @@ function show_modal(modal_id){
     $('#mask').fadeTo(500,0.8);
 
      //show the modal window
-    $('#'+modal_id).fadeIn(500);
+    $('.modal_window').css({'display': 'block'});
 
 }
